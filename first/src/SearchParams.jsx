@@ -1,5 +1,6 @@
 import { useState , useEffect} from "react";
-import Pet from "./Pet";
+import useBreedList from "./useBreedList";
+import Results from "./Results";
 const ANIMALS = ["bird","cat","dog","rabbit","reptile"];
 
 const SearchParams = () => {
@@ -7,7 +8,7 @@ const SearchParams = () => {
     const [animal, setAnimal] =useState("");
     const [breed, setBreed] = useState([]);
     const [pets , setPets] = useState([]);
-    const breeds = [];
+    const [breeds] = useBreedList(animal);
 
     useEffect(() => {
         requestPets();
@@ -59,18 +60,14 @@ const SearchParams = () => {
                         onChange={e => {setBreed(e.target.value)}}
                         >
                             <option />
-                            {breeds.map((animal) => (
+                            {breeds.map((breed) => (
                                 <option key={breed}>{breed}</option>
                             ))}
                         </select>
                 </label>
                 <button>Submit</button>
             </form>
-            {
-                pets.map((pet) => (
-                    <Pet name={pet.name} animal={pet.animal} breed={pet.breed} key={pet.id} />
-                ))
-            }
+            <Results pets={pets}/>
         </div>
     )
 }
