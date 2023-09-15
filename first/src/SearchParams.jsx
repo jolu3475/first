@@ -9,7 +9,7 @@ const SearchParams = () => {
     const [requestParams, setRequestParams] = useState({
         location:"",
         animal:"",
-        breeds:"",
+        breed:"",
     });
     const [animal, setAnimal] =useState("");
     const [breeds] = useBreedList(animal);
@@ -40,9 +40,8 @@ const SearchParams = () => {
                 <label htmlFor="animal">
                     Animal
                     <select 
-                        name="" 
+                        name="animal" 
                         id="animal"
-                        value={animal}
                         onChange={e => {
                             setAnimal(e.target.value);
                         }}

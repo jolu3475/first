@@ -1,12 +1,12 @@
-async function fetchSearch (queryKey) {
-    const {animal, location, breeds} = queryKey[1];
+async function fetchSearch ({queryKey}) {
+    const {animal, location, breed} = queryKey[1];
 
     const res = await fetch (
-        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${animal}&breeds=${breeds}`
+        `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
 
     if(!res.ok) {
-        throw new Error(`pet is not okay ${animal}, ${location}, ${breeds}`)
+        throw new Error(`pet search is not okay ${animal}, ${location}, ${breed}`)
     }
 
     return res.json();
